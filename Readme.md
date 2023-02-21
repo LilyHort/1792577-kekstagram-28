@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Лилиана Леднёва](https://up.htmlacademy.ru/javascript/28/user/1792577).
-* Наставник: `Неизвестно`.
+* Наставник: [Александр Конотоп](https://htmlacademy.ru/profile/sineway).
 
 ---
 
