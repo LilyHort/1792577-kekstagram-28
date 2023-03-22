@@ -77,9 +77,9 @@ const createCommentStateList = (length) => {
 
 /**
  * @param {number} id
- * @returns {ImageState}
+ * @returns {PictureState}
  */
-const createImageState = (id) => {
+const createPictureState = (id) => {
   const url = `photos/${id}.jpg`;
   const description = pikItemFromList(DESCRIPTIONS);
   const likes = getRandomInteger(MIN_LIKES, MAX_LIKES);
@@ -90,12 +90,12 @@ const createImageState = (id) => {
 
 /**
  * @param {number} length
- * @return {ImageState[]}
+ * @return {PictureState[]}
  */
-const createImageStateList = (length) => {
+const createPictureStateList = (length) => {
   const list = new Array(length).fill(1);
 
-  return list.map((start, index) => createImageState(start + index));
+  return list.map((start, index) => createPictureState(start + index));
 };
 
-export default createImageStateList;
+export default createPictureStateList;
