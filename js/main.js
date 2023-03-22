@@ -1,4 +1,5 @@
-import createImageStateList from './date.js';
+import createPictureStateList from './date.js';
 import {NUMBER_OBGECTS} from './date.js';
+import initGallary from './gallery.js';
 
-createImageStateList(NUMBER_OBGECTS);
+initGallary(createPictureStateList(NUMBER_OBGECTS));
