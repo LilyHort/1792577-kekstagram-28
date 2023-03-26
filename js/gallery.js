@@ -1,3 +1,5 @@
+import updatePreview from './gallery-preview.js';
+import openPopup from './popup.js';
 
 /**
  * @type {HTMLElement}
@@ -8,6 +10,11 @@ const gallery = document.querySelector('.pictures');
  * @type {HTMLTemplateElement}
  */
 const pictureTemplate = document.querySelector('#picture');
+
+/**
+ * @type {HTMLElement}
+ */
+const popup = document.querySelector('.big-picture');
 
 /**
  * @param {PictureState} data
@@ -24,6 +31,11 @@ export const createPicture = (data) => {
   picture.querySelector('.picture__likes').textContent = String(data.likes);
   picture.querySelector('.picture__comments').textContent = String(data.comments.length);
 
+  picture.addEventListener('click', (event) => {
+    updatePreview(data);
+    openPopup(popup);
+    event.preventDefault();
+  });
   return picture;
 };
 
