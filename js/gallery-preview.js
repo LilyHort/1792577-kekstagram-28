@@ -14,6 +14,16 @@ const discussion = preview.querySelector('.social__comments');
 const commentTemplate = discussion.querySelector('.social__comment');
 
 /**
+ * @type {HTMLButtonElement}
+ */
+const moreButton = preview.querySelector('.comments-loader');
+
+/**
+ * @type {PictureState  & {commentsTotal: number}}
+ */
+let currentDate;
+
+/**
  * @param {CommentState} data
  * @return {HTMLLIElement}
  */
@@ -30,16 +40,30 @@ const createComment = (data) => {
   return comment;
 };
 
+const onMoreButtonClick = () => {
+  const newComments = currentDate.comments.splice(0,5).map(createComment);
+  const show = currentDate.commentsTotal - currentDate.comments.length;
+  preview.querySelector('.comments-show').textContent = String(show);
+  discussion.append(...newComments);
+  moreButton.classList.toggle('hidden', show === currentDate.commentsTotal);
+};
 
 /**
  * @param {PictureState} data
  */
 const updatePreview = (data) => {
-  preview.querySelector('.big-picture__img img').setAttribute('src', data.url);
-  preview.querySelector('.likes-count').textContent = String(data.likes);
-  preview.querySelector('.social__caption').textContent = data.description;
+  currentDate = {
+    ...structuredClone(data),
+    commentsTotal: data.comments.length
+  };
+  preview.querySelector('.big-picture__img img').setAttribute('src', currentDate.url);
+  preview.querySelector('.likes-count').textContent = String(currentDate.likes);
+  preview.querySelector('.social__caption').textContent = currentDate.description;
 
-  discussion.replaceChildren(...data.comments.map(createComment));
+  preview.querySelector('.comments-count').textContent = String(currentDate.commentsTotal);
+  discussion.replaceChildren();
+  moreButton.addEventListener('click', onMoreButtonClick);
+  moreButton.click();
 };
 
 export default updatePreview;
