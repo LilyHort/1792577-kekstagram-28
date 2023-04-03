@@ -1,3 +1,4 @@
+import updatePreview from './upload-preview.js';
 import openPopup from './popup.js';
 
 /**
@@ -42,7 +43,9 @@ const addDescriptionValidator = (message, validate) => {
  */
 const onFormChange = (event) => {
   if (event.target === form.filename) {
-    // TODO: Изображения
+    const data = event.target.files.item(0);
+
+    updatePreview(data);
     openPopup(popup);
   }
 };
@@ -50,7 +53,6 @@ const onFormChange = (event) => {
 const onFormReset = () => {
   pristine.reset();
 };
-
 
 /**
  * @param {SubmitEvent} event
