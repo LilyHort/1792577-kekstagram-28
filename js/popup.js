@@ -1,8 +1,10 @@
 /**
- * @param {KeyboardEvent} event
+ * @param {KeyboardEvent & {target: Element}} event
  */
 const onDocumenKeydown = (event) => {
-  if (event.key.startsWith('Esc')) {
+  const isEscepeKey = event.key.startsWith('Esc');
+  const isTextField = event.target.matches('input[type = "text"], textarea');
+  if (isEscepeKey && !isTextField) {
     /**
      * @type {HTMLButtonElement}
      */
