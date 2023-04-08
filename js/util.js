@@ -1,23 +1,15 @@
 /**
- * @template Item
- * @param {Item[]} list
- * @return {Item}
+ *
+ * @param {String} url
+ * @param {RequestInit} [options]
+ * @return {Promise}
  */
-export const pikItemFromList = (list) => {
-  const index = Math.floor(Math.random() * list.length);
+export const request = async (url, options) => {
+  const response = await fetch(url, options);
 
-  return list[index];
-};
+  if(!response.ok){
+    throw new Error(`${response.status}, ${response.statusText}`);
+  }
 
-/**
- * @param {number} min
- * @param {number}  max
- * @returns {number}
- */
-export const getRandomInteger = (min, max) => {
-  const lower = Math.ceil(Math.min(min, max));
-  const upper = Math.floor(Math.max(min, max));
-  const result = Math.random() * (upper - lower + 1) + lower;
-
-  return Math.floor(result);
+  return response.json();
 };
