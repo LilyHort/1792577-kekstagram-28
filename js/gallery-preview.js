@@ -1,5 +1,5 @@
 /**
- * @type
+ * @type {HTMLLIElement}
  */
 const preview = document.querySelector('.big-picture__preview');
 
