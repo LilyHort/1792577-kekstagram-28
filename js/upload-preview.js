@@ -96,6 +96,17 @@ const setScale = (perecent) => {
 };
 
 /**
+ * @param {string} url
+ */
+const setPicture = (url) => {
+  picture.setAttribute('src', url);
+
+  effectPicker.querySelectorAll('span').forEach((span) => {
+    span.style.setProperty('background-image', `url(${url})`);
+  });
+};
+
+/**
  * @param {MouseEvent} event
  */
 const onScaleControlClick = (event) => {
@@ -130,9 +141,7 @@ const onEffectSliderUpdate = () => {
  * @param {File} data
  */
 const updatePreview = (data) => {
-//TODO: Подстановка изображения
-
-  void data;
+  setPicture(URL.createObjectURL(data));
   setScale(Scale.MAX);
   setEffect(Effect.NONE);
 
